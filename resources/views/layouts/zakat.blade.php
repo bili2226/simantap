@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name', 'Informasi Mualaf') }}</title>
+    <title>{{ config('app.name', 'zakat') }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -26,110 +26,52 @@
       </div>
     </header>
 
-    <main class="max-w-6xl mx-auto py-8 px-4">
-      <h1 class="text-2xl font-bold text-center mb-6">Daftar Data Mualaf</h1>
-      <div class="overflow-x-auto bg-white rounded-xl shadow p-4 mb-8">
-        <table class="min-w-full divide-y divide-gray-200 text-xs md:text-sm">
-          <thead class="bg-[#e8e8e3]">
-            <tr>
-              <th class="px-2 py-2 font-semibold">No</th>
-              <th class="px-2 py-2 font-semibold">Nama Lengkap</th>
-              <th class="px-2 py-2 font-semibold">No HP</th>
-              <th class="px-2 py-2 font-semibold">Email</th>
-              <th class="px-2 py-2 font-semibold">Alamat</th>
-              <th class="px-2 py-2 font-semibold">Tanggal Kegiatan</th>
-              <th class="px-2 py-2 font-semibold">Waktu</th>
-              <th class="px-2 py-2 font-semibold">Catatan</th>
-              <th class="px-2 py-2 font-semibold">Persetujuan</th>
-              <th class="px-2 py-2 font-semibold">Kesediaan</th>
-              <th class="px-2 py-2 font-semibold">Tanggal Daftar</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-100">
-            @forelse($mualafs as $mualaf)
-            <tr>
-              <td class="px-2 py-2">{{ $loop->iteration }}</td>
-              <td class="px-2 py-2">{{ $mualaf->nama_lengkap }}</td>
-              <td class="px-2 py-2">{{ $mualaf->nomor_hp }}</td>
-              <td class="px-2 py-2">{{ $mualaf->email }}</td>
-              <td class="px-2 py-2">{{ $mualaf->alamat }}</td>
-              <td class="px-2 py-2">{{ $mualaf->tanggal_kegiatan }}</td>
-              <td class="px-2 py-2">{{ $mualaf->waktu_kegiatan }}</td>
-              <td class="px-2 py-2">{{ $mualaf->catatan }}</td>
-              <td class="px-2 py-2">{{ $mualaf->persetujuan ? 'Ya' : 'Tidak' }}</td>
-              <td class="px-2 py-2 capitalize">{{ $mualaf->kesediaan }}</td>
-              <td class="px-2 py-2">{{ $mualaf->created_at->format('d-m-Y H:i') }}</td>
-            </tr>
-            @empty
-            <tr>
-              <td colspan="11" class="text-center py-4 text-gray-500">Belum ada data mualaf.</td>
-            </tr>
-            @endforelse
-          </tbody>
-        </table>
-      </div>
-      <h1 class="text-2xl font-bold text-center mb-6">Daftar Reservasi Aula</h1>
-      <div class="overflow-x-auto bg-white rounded-xl shadow p-4">
-        <table class="min-w-full divide-y divide-gray-200 text-xs md:text-sm">
-          <thead class="bg-[#e8e8e3]">
-            <tr>
-              <th class="px-2 py-2 font-semibold">No</th>
-              <th class="px-2 py-2 font-semibold">Nama Lengkap</th>
-              <th class="px-2 py-2 font-semibold">No HP</th>
-              <th class="px-2 py-2 font-semibold">Email</th>
-              <th class="px-2 py-2 font-semibold">Instansi</th>
-              <th class="px-2 py-2 font-semibold">Alamat</th>
-              <th class="px-2 py-2 font-semibold">Kegiatan</th>
-              <th class="px-2 py-2 font-semibold">Pengantin Pria</th>
-              <th class="px-2 py-2 font-semibold">Pengantin Wanita</th>
-              <th class="px-2 py-2 font-semibold">Tanggal Kegiatan</th>
-              <th class="px-2 py-2 font-semibold">Jumlah Peserta</th>
-              <th class="px-2 py-2 font-semibold">Waktu</th>
-              <th class="px-2 py-2 font-semibold">File KTP/SK</th>
-              <th class="px-2 py-2 font-semibold">Persetujuan</th>
-              <th class="px-2 py-2 font-semibold">Kesediaan</th>
-              <th class="px-2 py-2 font-semibold">Tanggal Daftar</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-100">
-            @forelse($reservasis as $reservasi)
-            <tr>
-              <td class="px-2 py-2">{{ $loop->iteration }}</td>
-              <td class="px-2 py-2">{{ $reservasi->nama_lengkap }}</td>
-              <td class="px-2 py-2">{{ $reservasi->nomor_hp }}</td>
-              <td class="px-2 py-2">{{ $reservasi->email }}</td>
-              <td class="px-2 py-2">{{ $reservasi->instansi }}</td>
-              <td class="px-2 py-2">{{ $reservasi->alamat }}</td>
-              <td class="px-2 py-2">
-                @foreach(json_decode($reservasi->nama_kegiatan, true) ?? [] as $kegiatan)
-                  <span class="inline-block bg-[#d2cc8c] rounded px-2 py-1 mr-1 mb-1">{{ $kegiatan }}</span>
-                @endforeach
-              </td>
-              <td class="px-2 py-2">{{ $reservasi->nama_pengantin_pria }}</td>
-              <td class="px-2 py-2">{{ $reservasi->nama_pengantin_wanita }}</td>
-              <td class="px-2 py-2">{{ $reservasi->tanggal_kegiatan }}</td>
-              <td class="px-2 py-2">{{ $reservasi->jumlah_peserta }}</td>
-              <td class="px-2 py-2">{{ $reservasi->waktu_kegiatan }}</td>
-              <td class="px-2 py-2">
-                @if($reservasi->ktp_path)
-                  <a href="{{ asset('storage/'.$reservasi->ktp_path) }}" target="_blank" class="text-blue-600 underline">Lihat File</a>
-                @else
-                  -
-                @endif
-              </td>
-              <td class="px-2 py-2">{{ $reservasi->persetujuan ? 'Ya' : 'Tidak' }}</td>
-              <td class="px-2 py-2 capitalize">{{ $reservasi->kesediaan }}</td>
-              <td class="px-2 py-2">{{ $reservasi->created_at->format('d-m-Y H:i') }}</td>
-            </tr>
-            @empty
-            <tr>
-              <td colspan="16" class="text-center py-4 text-gray-500">Belum ada data reservasi aula.</td>
-            </tr>
-            @endforelse
-          </tbody>
-        </table>
-      </div>
-    </main>
+<div class="max-w-4xl mx-auto py-8 px-2">
+    <div class="bg-white rounded-xl shadow p-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-center text-[#258a46] mb-2">Kalkulator Zakat</h2>
+        <p class="text-center text-gray-600 text-sm mb-6">
+            Kalkulator zakat adalah layanan untuk mempermudah perhitungan jumlah zakat yang harus ditunaikan oleh setiap umat muslim sesuai ketetapan syariah. Oleh karena itu, bagi Anda yang ingin mengetahui berapa jumlah zakat yang harus ditunaikan, silakan gunakan fasilitas Kalkulator Zakat SIMANTAP di bawah ini.
+        </p>
+        <div class="max-w-xl mx-auto">
+            <h4 class="text-xl font-semibold text-[#2eaf68] text-center mb-4">Jenis Zakat</h4>
+            <div class="flex justify-center mb-3">
+                <select class="border border-gray-300 rounded-full px-6 py-2 focus:ring-2 focus:ring-[#2eaf68] text-center" id="jenisZakat">
+                    <option selected>PENGHASILAN</option>
+                    <!-- Tambahkan jenis zakat lain jika diperlukan -->
+                </select>
+            </div>
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 mb-6 text-gray-700 text-xs rounded">
+                Zakat penghasilan atau yang dikenal juga sebagai zakat profesi adalah bagian dari zakat mal yang wajib dikeluarkan atas harta yang berasal dari pendapatan / penghasilan rutin dari pekerjaan yang tidak melanggar syariah. Nisab penghasilan sebesar emas 85 gram emas per tahun. Kadar zakat penghasilan adalah sebesar 2,5%. Dalam perhitungannya, zakat penghasilan dapat dihitung dari pendapatan kotor (bruto) atau pendapatan bersih (netto). Jika penghasilan setiap bulan sudah melebihi nisab dan haul (85 gr/tahun, emas harga 1gr), kadar zakatnya 2,5%. Jika jumlah penghasilan setiap bulan tidak melebihi nisab setelah dihitung bulanan, maka wajib dibayarkan zakatnya sebesar 2,5% dari pendapatan tersebut.
+            </div>
+            <form class="space-y-4">
+                <div>
+                    <label for="gaji" class="block font-medium text-sm mb-1">Gaji per bulan</label>
+                    <input type="number" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#2eaf68]" id="gaji" placeholder="Rp.">
+                </div>
+                <div>
+                    <label for="lain" class="block font-medium text-sm mb-1">Penghasilan Lain-Lain</label>
+                    <input type="number" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#2eaf68]" id="lain" placeholder="Rp.">
+                </div>
+                <div>
+                    <label for="total" class="block font-medium text-sm mb-1">Jumlah Penghasilan per bulan</label>
+                    <input type="number" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#2eaf68]" id="total" placeholder="Rp.">
+                </div>
+                <div>
+                    <label for="nisabBulan" class="block font-medium text-sm mb-1">Nisab per bulan</label>
+                    <input type="number" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#2eaf68]" id="nisabBulan" placeholder="Rp.">
+                </div>
+                <div>
+                    <label for="nisabTahun" class="block font-medium text-sm mb-1">Nisab per tahun</label>
+                    <input type="number" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#2eaf68]" id="nisabTahun" placeholder="Rp.">
+                </div>
+                <div class="flex justify-between gap-4 pt-2">
+                    <button type="reset" class="flex-1 bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 rounded-lg shadow transition">Reset</button>
+                    <button type="submit" class="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg shadow transition">Hitung Zakat</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
     <!-- Footer dengan peta -->
     <footer class="mt-10 bg-[#e8e8e3] border-t border-gray-200 relative overflow-hidden">

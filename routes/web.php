@@ -34,4 +34,7 @@ use App\Http\Controllers\ReservasiController;
 Route::get('/reservasi', [ReservasiController::class, 'create'])->name('reservasi');
 Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservasi.store');
 
+use App\Http\Controllers\ZakatController;
+Route::get('/zakat', [ZakatController::class, 'index'])->name('zakat');
+
 require __DIR__.'/auth.php';
