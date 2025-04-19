@@ -20,7 +20,11 @@ Route::middleware('auth')->group(function () {
 Route::view('/home', 'layouts.home')->name('home');
 
 // Route untuk halaman artikel
-Route::view('/artikel', 'layouts.artikel')->name('artikel');
+use App\Models\Artikel;
+Route::get('/artikel', function () {
+    $artikels = Artikel::orderBy('created_at', 'desc')->get();
+    return view('layouts.artikel', compact('artikels'));
+})->name('artikel');
 
 // Route untuk halaman mualaf
 use App\Http\Controllers\MualafController;
@@ -36,6 +40,22 @@ Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservas
 
 use App\Http\Controllers\ZakatController;
 Route::get('/zakat', [ZakatController::class, 'index'])->name('zakat');
+
+// Route untuk halaman admin panel
+Route::view('/admin', 'layouts.admin.admin')->name('admin');
+
+use App\Http\Controllers\AdminArtikelController;
+use App\Http\Controllers\AdminBeritaController;
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('artikel', AdminArtikelController::class);
+    Route::resource('berita', AdminBeritaController::class);
+});
+
+use App\Models\Berita;
+Route::get('/berita', function () {
+    $beritas = Berita::orderBy('created_at', 'desc')->get();
+    return view('layouts.berita', compact('beritas'));
+})->name('berita');
 
 use App\Http\Controllers\DonasiController;
 use App\Http\Controllers\KonsultasiController;

@@ -21,6 +21,7 @@
           </a>
         </div>
         <nav class="flex gap-2 md:gap-4">
+          <a href="/admin" class="ml-2 bg-[#232323] text-white px-2 py-1 rounded text-xs font-semibold hover:bg-[#4b4b2e] transition shadow">Admin</a>
           <a href="/home" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Home</a>
           <a href="#" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Agenda</a>
           <a href="/artikel" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Artikel</a>

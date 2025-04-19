@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Str; @endphp
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -23,13 +24,30 @@
         <a href="/home" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Home</a>
         <a href="#" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Agenda</a>
         <a href="/artikel" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Artikel</a>
-        <a href="#" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Berita</a>
+        <a href="/berita" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#a5a15a] transition font-bold">Berita</a>
         <a href="/informasi" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Informasi</a>
       </nav>
     </div>
   </header>
 
   <!-- Main Artikel Section -->
+  <main class="max-w-4xl mx-auto py-8 px-4">
+    <h1 class="text-2xl font-bold text-green-700 mb-6 text-center">Artikel Masjid</h1>
+    <div class="grid gap-8">
+      @forelse($artikels as $artikel)
+        <div class="bg-white rounded-xl shadow p-6 flex flex-col gap-3">
+          <h2 class="text-xl font-bold text-[#4b4b2e] mb-2">{{ $artikel->judul }}</h2>
+          <div class="text-xs text-gray-500 mb-2">{{ $artikel->created_at->format('d M Y') }}</div>
+          @if($artikel->gambar)
+            <img src="{{ asset('storage/'.$artikel->gambar) }}" alt="Gambar Artikel" class="w-full max-h-64 object-cover rounded mb-3">
+          @endif
+          <div class="text-gray-800 text-base">{!! nl2br(e($artikel->isi)) !!}</div>
+        </div>
+      @empty
+        <div class="text-center text-gray-500 py-8">Belum ada artikel.</div>
+      @endforelse
+    </div>
+  </main>
   <main class="max-w-6xl mx-auto py-8 px-4">
     <h1 class="text-2xl font-bold text-center mb-6">Artikel Islam</h1>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -48,34 +66,35 @@
         <div class="grid md:grid-cols-3 gap-6">
           <!-- Artikel Utama -->
           <div class="md:col-span-2 col-span-1">
-            <div class="bg-white rounded-xl shadow p-4 mb-6">
-              <img src="{{ asset('aset/artikel1.jpg') }}" class="w-full h-48 object-cover rounded mb-4" alt="Artikel Utama">
-              <h2 class="font-bold text-lg mb-2">Meninggalkan Sesuatu Karena Allah</h2>
-              <div class="text-xs text-gray-500 mb-1">Kajian Ramadhan 25: <span class="text-gray-700">Meninggalkan Sesuatu Karena Allah</span></div>
-              <div class="text-xs text-gray-400">29 April 2024 &bull; 1.278x dibaca</div>
-            </div>
-            <!-- List Artikel -->
-            <div class="space-y-4">
-              <div class="flex gap-3 bg-white rounded-lg shadow p-2">
-                <img src="{{ asset('aset/artikel2.jpg') }}" class="w-20 h-16 object-cover rounded" alt="Ajar Kita Turut Mensukseskan">
-                <div>
-                  <div class="font-semibold text-sm">Ajar Kita Turut Mensukseskan</div>
-                  <div class="text-xs text-gray-500">"InsyaAllah ilmu itu seiring, sejalan dengan amal. Ilmu yang bermanfaat adalah ilmu yang diamalkan..."</div>
-                </div>
+            @if($artikels->count())
+              <!-- Artikel Utama (artikel terbaru) -->
+              @php $utama = $artikels->first(); @endphp
+              <div class="bg-white rounded-xl shadow p-4 mb-6">
+                @if($utama->gambar)
+                  <img src="{{ asset('storage/'.$utama->gambar) }}" class="w-full h-48 object-cover rounded mb-4" alt="{{ $utama->judul }}">
+                @endif
+                <h2 class="font-bold text-lg mb-2">{{ $utama->judul }}</h2>
+                <div class="text-xs text-gray-500 mb-1">{{ $utama->created_at->format('d M Y') }}</div>
+                <div class="text-gray-800 text-sm mb-2">{!! Str::limit(strip_tags($utama->isi), 150) !!}</div>
               </div>
-              <div class="flex gap-3 bg-white rounded-lg shadow p-2">
-                <img src="{{ asset('aset/artikel3.jpg') }}" class="w-20 h-16 object-cover rounded" alt="Hikmah: Berharap Ampunan dan Rahmat Allah">
-                <div>
-                  <div class="font-semibold text-sm">Hikmah: Berharap Ampunan dan Rahmat Allah</div>
-                  <div class="text-xs text-gray-500">29 April 2024 &bull; 1.003x dibaca</div>
-                </div>
+              <!-- List Artikel Lainnya -->
+              <div class="space-y-4">
+                @foreach($artikels->skip(1) as $artikel)
+                  <div class="flex gap-3 bg-white rounded-lg shadow p-2">
+                    @if($artikel->gambar)
+                      <img src="{{ asset('storage/'.$artikel->gambar) }}" class="w-20 h-16 object-cover rounded" alt="{{ $artikel->judul }}">
+                    @endif
+                    <div>
+                      <div class="font-semibold text-sm">{{ $artikel->judul }}</div>
+                      <div class="text-xs text-gray-500">{{ Str::limit(strip_tags($artikel->isi), 70) }}</div>
+                      <div class="text-xs text-gray-400">{{ $artikel->created_at->format('d M Y') }}</div>
+                    </div>
+                  </div>
+                @endforeach
               </div>
-              <div class="flex gap-3 bg-white rounded-lg shadow p-2">
-                <img src="{{ asset('aset/artikel4.jpg') }}" class="w-20 h-16 object-cover rounded" alt="Khutbah Jumat: Awafa">
-                <div>
-                  <div class="font-semibold text-sm">Khutbah Jumat: Awafa</div>
-                  <div class="text-xs text-gray-500">29 April 2024 &bull; 2.219x dibaca</div>
-                </div>
+            @else
+              <div class="text-center text-gray-500 py-8">Belum ada artikel.</div>
+            @endif
               </div>
             </div>
           </div>
