@@ -21,11 +21,10 @@
           </a>
         </div>
         <nav class="flex gap-2 md:gap-4">
-          <a href="/admin" class="ml-2 bg-[#232323] text-white px-2 py-1 rounded text-xs font-semibold hover:bg-[#4b4b2e] transition shadow">Admin</a>
           <a href="/home" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Home</a>
           <a href="#" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Agenda</a>
           <a href="/artikel" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Artikel</a>
-          <a href="#" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Berita</a>
+          <a href="/berita" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Berita</a>
           <a href="/informasi" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Informasi</a>
         </nav>
       </div>
@@ -116,6 +115,8 @@
       <div class="flex flex-col items-center md:items-start gap-2">
         <img src="{{ asset('aset/logoMasjid.svg') }}" alt="Logo" class="w-21 h-21 object-contain">
         <p class="text-sm font-semibold">Selamat Datang Di Website Resmi Masjid Jami<br>Tangkubanperahu, Jakarta</p>
+        <a href="/admin" class="ml-2 bg-[#232323] text-white px-2 py-1 rounded text-xs font-semibold hover:bg-[#4b4b2e] transition shadow">Admin</a>
+
       </div>
       <div class="md:col-span-2 flex justify-center">
       <div class="relative w-full">
