@@ -13,8 +13,10 @@
     <header class="bg-white shadow-sm">
       <div class="max-w-6xl mx-auto flex items-center justify-between py-2 px-4">
         <div class="flex items-center gap-3">
+          <a href="/home" class="flex items-center gap-3">
           <img src="{{ asset('aset/logoMasjid.svg') }}" alt="Logo" class="w-16 h-16 object-contain">
           <span class="text-xl font-bold text-gray-700">Masjid Jami Tangkubanperahu</span>
+          </a> 
         </div>
         <nav class="flex gap-2 md:gap-4">
           <a href="/home" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Home</a>
@@ -69,7 +71,7 @@
         </table>
       </div>
       <h1 class="text-2xl font-bold text-center mb-6">Daftar Reservasi Aula</h1>
-      <div class="overflow-x-auto bg-white rounded-xl shadow p-4">
+      <div class="overflow-x-auto bg-white rounded-xl shadow p-4 mb-8">
         <table class="min-w-full divide-y divide-gray-200 text-xs md:text-sm">
           <thead class="bg-[#e8e8e3]">
             <tr>
@@ -124,6 +126,45 @@
             @empty
             <tr>
               <td colspan="16" class="text-center py-4 text-gray-500">Belum ada data reservasi aula.</td>
+            </tr>
+            @endforelse
+          </tbody>
+        </table>
+      </div>
+      <h1 class="text-2xl font-bold text-center mb-6">Daftar Donasi</h1>
+      <div class="overflow-x-auto bg-white rounded-xl shadow p-4 mb-8">
+        <table class="min-w-full divide-y divide-gray-200 text-xs md:text-sm">
+          <thead class="bg-[#e8e8e3]">
+            <tr>
+              <th class="px-2 py-2 font-semibold">No</th>
+              <th class="px-2 py-2 font-semibold">Nama Lengkap</th>
+              <th class="px-2 py-2 font-semibold">Jenis Donasi</th>
+              <th class="px-2 py-2 font-semibold">Nominal</th>
+              <th class="px-2 py-2 font-semibold">Keterangan</th>
+              <th class="px-2 py-2 font-semibold">Bukti Donasi</th>
+              <th class="px-2 py-2 font-semibold">Tanggal Donasi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            @forelse($donasis as $donasi)
+            <tr>
+              <td class="px-2 py-2">{{ $loop->iteration }}</td>
+              <td class="px-2 py-2">{{ $donasi->nama_lengkap }}</td>
+              <td class="px-2 py-2">{{ $donasi->jenis_donasi }}</td>
+              <td class="px-2 py-2">Rp{{ number_format($donasi->nominal, 0, ',', '.') }}</td>
+              <td class="px-2 py-2">{{ $donasi->keterangan }}</td>
+              <td class="px-2 py-2">
+                @if($donasi->bukti_path)
+                  <a href="{{ asset('storage/'.$donasi->bukti_path) }}" target="_blank" class="text-blue-600 underline">Lihat Bukti</a>
+                @else
+                  -
+                @endif
+              </td>
+              <td class="px-2 py-2">{{ $donasi->created_at->format('d-m-Y H:i') }}</td>
+            </tr>
+            @empty
+            <tr>
+              <td colspan="6" class="text-center py-4 text-gray-500">Belum ada data donasi.</td>
             </tr>
             @endforelse
           </tbody>

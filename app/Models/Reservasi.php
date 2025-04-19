@@ -21,6 +21,7 @@ class Reservasi extends Model
         'jumlah_peserta',
         'waktu_kegiatan',
         'ktp_path',
+        'gambar_path',
         'persetujuan',
         'kesediaan',
     ];

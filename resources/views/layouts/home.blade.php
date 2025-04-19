@@ -15,8 +15,10 @@
     <header class="bg-white shadow-sm">
       <div class="max-w-6xl mx-auto flex items-center justify-between py-2 px-4">
         <div class="flex items-center gap-3">
-          <img src="{{ asset('aset/logoMasjid.svg') }}" alt="Logo" class="w-16 h-16 object-contain">
-          <span class="text-xl font-bold text-gray-700">Masjid Jami Tangkubanperahu</span>
+          <a href="/home" class="flex items-center gap-3">
+            <img src="{{ asset('aset/logoMasjid.svg') }}" alt="Logo" class="w-16 h-16 object-contain">
+            <span class="text-xl font-bold text-gray-700">Masjid Jami Tangkubanperahu</span>
+          </a>
         </div>
         <nav class="flex gap-2 md:gap-4">
           <a href="/home" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Home</a>
@@ -78,29 +80,29 @@
         <h2 class="text-center text-lg font-bold mb-4">Layanan</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-center text-sm">
           <a href="/mualaf">
-            <img src="{{ asset('aset/mualafs.svg') }}" class="mx-auto w-20 h-20 hover:scale-105 transition" alt="Muallaf Center">
+            <img src="{{ asset('aset/mualafs.svg') }}" class="mx-auto w-24 h-24 hover:scale-105 transition" alt="Muallaf Center">
             <div class="mt-2 text-black hover:underline">Muallaf Center</div>
           </a>
           <a href="/reservasi">
-            <img src="{{ asset('aset/aula.svg') }}" class="mx-auto w-20 h-20 hover:scale-105 transition" alt="Reservasi Aula">
+            <img src="{{ asset('aset/aula.svg') }}" class="mx-auto w-24 h-24 hover:scale-105 transition" alt="Reservasi Aula">
             <div class="mt-2 text-black hover:underline">Reservasi Aula</div>
           </a>
-          <div>
-            <img src="{{ asset('aset/konsul.svg') }}" class="mx-auto w-20 h-20" alt="Konsultasi">
-            <div class="mt-2">Konsultasi</div>
-          </div>
-          <div>
-            <img src="{{ asset('aset/donasi.svg') }}" class="mx-auto w-20 h-20" alt="Donasi Online">
-            <div class="mt-2">Donasi Online</div>
-          </div>
+          <a href="/konsultasi">
+            <img src="{{ asset('aset/konsul.svg') }}" class="mx-auto w-24 h-24 hover:scale-105 transition" alt="Konsultasi">
+            <div class="mt-2 text-black hover:underline">Konsultasi</div>
+          </a>
+          <a href="/donasi">
+            <img src="{{ asset('aset/donasi.svg') }}" class="mx-auto w-24 h-24 hover:scale-105 transition" alt="Donasi Online">
+            <div class="mt-2 text-black hover:underline">Donasi Online</div>
+          </a>
           <a href="{{ route('zakat') }}">
-            <img src="{{ asset('aset/zakat.svg') }}" class="mx-auto w-20 h-20 hover:scale-105 transition" alt="Unit Zakat">
+            <img src="{{ asset('aset/zakat.svg') }}" class="mx-auto w-24  h-24 hover:scale-105 transition" alt="Unit Zakat">
             <div class="mt-2 text-black hover:underline">Unit Pelayanan Zakat</div>
           </a>
-          <div>
-            <img src="{{ asset('aset/galeri.svg') }}" class="mx-auto w-20 h-20" alt="Galeri Masjid">
-            <div class="mt-2">Galeri Masjid</div>
-          </div>
+          <a href="/galeri">
+            <img src="{{ asset('aset/galeri.svg') }}" class="mx-auto w-24 h-24 hover:scale-105 transition" alt="Galeri Masjid">
+            <div class="mt-2 text-black hover:underline">Galeri Masjid</div>
+          </a>
         </div>
       </div>
     </div>

@@ -11,6 +11,7 @@ class InformasiController extends Controller
     {
         $mualafs = Mualaf::orderBy('created_at', 'desc')->get();
         $reservasis = \App\Models\Reservasi::orderBy('created_at', 'desc')->get();
-        return view('layouts.informasi', compact('mualafs', 'reservasis'));
+        $donasis = \App\Models\Donasi::orderBy('created_at', 'desc')->get();
+        return view('layouts.informasi', compact('mualafs', 'reservasis', 'donasis'));
     }
 }

@@ -13,8 +13,10 @@
     <header class="bg-white shadow-sm">
       <div class="max-w-6xl mx-auto flex items-center justify-between py-2 px-4">
         <div class="flex items-center gap-3">
+        <a href="/home" class="flex items-center gap-3">
           <img src="{{ asset('aset/logoMasjid.svg') }}" alt="Logo" class="w-16 h-16 object-contain">
           <span class="text-xl font-bold text-gray-700">Masjid Jami Tangkubanperahu</span>
+        </a>
         </div>
         <nav class="flex gap-2 md:gap-4">
           <a href="/home" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Home</a>

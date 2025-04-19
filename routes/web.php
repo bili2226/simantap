@@ -37,4 +37,14 @@ Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservas
 use App\Http\Controllers\ZakatController;
 Route::get('/zakat', [ZakatController::class, 'index'])->name('zakat');
 
+use App\Http\Controllers\DonasiController;
+use App\Http\Controllers\KonsultasiController;
+use App\Http\Controllers\GaleriController;
+Route::get('/donasi', [DonasiController::class, 'index'])->name('donasi');
+Route::post('/donasi', [DonasiController::class, 'store'])->name('donasi.store');
+
+Route::get('/konsultasi', [KonsultasiController::class, 'index'])->name('konsultasi');
+Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
+Route::post('/konsultasi', [KonsultasiController::class, 'store'])->name('konsultasi.store');
+
 require __DIR__.'/auth.php';
