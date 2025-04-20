@@ -73,6 +73,10 @@
           <div id="calendar"></div>
           </div>
         </div>
+        <!-- Sidebar Kanan: Jadwal Sholat -->
+        <aside class="md:col-span-1 col-span-1 flex flex-col gap-6 md:sticky md:top-8">
+          @include('layouts.sholat')
+        </aside>
       </div>
 
       <!-- Layanan -->

@@ -3,6 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Http;
+Route::get('/home', function () {
+    return view('layouts.home');
+})->name('home');
+
 Route::get('/', function () {
     return view('layouts.home');
 });
@@ -11,10 +16,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/', function () {
-    $products = \App\Models\Product::latest()->with('categories')->paginate(9);
-    return view('welcome', compact('products'));
-});
+// Route::get('/', function () {
+//     $products = \App\Models\Product::latest()->with('categories')->paginate(9);
+//     return view('welcome', compact('products'));
+// });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
@@ -60,6 +65,59 @@ Route::get('/artikel', function () {
 // Route untuk halaman mualaf
 use App\Http\Controllers\MualafController;
 Route::get('/mualaf', [MualafController::class, 'create'])->name('mualaf');
+
+// API Kalkulator Zakat
+use Illuminate\Http\Request;
+Route::post('/api/zakat/hitung', function(Request $request) {
+    $jenis = $request->input('jenis');
+    $result = null;
+    switch($jenis) {
+        case 'penghasilan':
+            $penghasilan = floatval($request->input('penghasilan', 0));
+            $result = [
+                'zakat' => round($penghasilan * 0.025, 2),
+                'persen' => 2.5,
+                'keterangan' => '2.5% dari penghasilan bulanan'
+            ];
+            break;
+        case 'perusahaan':
+            $laba = floatval($request->input('laba', 0));
+            $result = [
+                'zakat' => round($laba * 0.025, 2),
+                'persen' => 2.5,
+                'keterangan' => '2.5% dari laba bersih perusahaan'
+            ];
+            break;
+        case 'perdagangan':
+            $modal = floatval($request->input('modal', 0));
+            $keuntungan = floatval($request->input('keuntungan', 0));
+            $utang = floatval($request->input('utang', 0));
+            $hasil = $modal + $keuntungan - $utang;
+            $result = [
+                'zakat' => round($hasil * 0.025, 2),
+                'persen' => 2.5,
+                'keterangan' => '2.5% dari (modal + keuntungan - utang)'
+            ];
+            break;
+        case 'emas':
+            $berat = floatval($request->input('berat', 0));
+            $harga = floatval($request->input('harga', 0));
+            $total = $berat * $harga;
+            $nisab = 85 * $harga;
+            $kena = $berat >= 85;
+            $result = [
+                'zakat' => $kena ? round($total * 0.025, 2) : 0,
+                'persen' => 2.5,
+                'nisab' => $nisab,
+                'kena_nisab' => $kena,
+                'keterangan' => '2.5% dari nilai emas jika berat ≥ 85 gram'
+            ];
+            break;
+        default:
+            $result = ['error' => 'Jenis zakat tidak dikenali'];
+    }
+    return response()->json($result);
+});
 Route::post('/mualaf', [MualafController::class, 'store'])->name('mualaf.store');
 
 use App\Http\Controllers\InformasiController;
@@ -87,6 +145,9 @@ Route::get('/berita', function () {
     $beritas = Berita::orderBy('created_at', 'desc')->get();
     return view('layouts.berita', compact('beritas'));
 })->name('berita');
+
+use App\Http\Controllers\SholatController;
+Route::get('/sholat', [SholatController::class, 'jadwal'])->name('sholat');
 
 use App\Http\Controllers\DonasiController;
 use App\Http\Controllers\KonsultasiController;
