@@ -26,6 +26,7 @@
         <a href="/artikel" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Artikel</a>
         <a href="/berita" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#a5a15a] transition font-bold">Berita</a>
         <a href="/informasi" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Informasi</a>
+        <span id="currentTimeHome" class="font-mono text-xs text-gray-700 bg-white px-3 py-1 rounded-full ml-1"></span>
       </nav>
     </div>
   </header>
@@ -54,12 +55,20 @@
       <!-- Sidebar Kiri: Artikel Terbaru -->
       <aside class="md:col-span-1 col-span-1">
         <button class="bg-[#b7b36e] text-white px-4 py-2 rounded mb-4 w-full font-semibold">Artikel Terbaru</button>
-        <ul class="space-y-2 text-xs md:text-sm">
-          <li>Kajian Tafsir QS Al Asr: Pentingnya Waktu sebagai Amanah Ilahi</li>
-          <li>Mimbar Ramadhan: Kolaborasi Negara dan Masyarakat dalam Pembentukan Masyarakat Madani</li>
-          <li>Kajian Subuh Istiqal: Keutamaan Membaca Alquran di Bulan Ramadhan</li>
-          <li>Hikmah: Ramadhan dan Muhasabah yang Menyapa Umat Islam</li>
-        </ul>
+        <div class="grid gap-3">
+          <a href="#" class="block bg-white border border-yellow-200 rounded-lg px-3 py-2 shadow-sm hover:bg-yellow-50 transition">
+            <div class="font-semibold text-sm text-gray-800">Kajian Tafsir QS Al Asr: Pentingnya Waktu sebagai Amanah Ilahi</div>
+          </a>
+          <a href="#" class="block bg-white border border-yellow-200 rounded-lg px-3 py-2 shadow-sm hover:bg-yellow-50 transition">
+            <div class="font-semibold text-sm text-gray-800">Mimbar Ramadhan: Kolaborasi Negara dan Masyarakat dalam Pembentukan Masyarakat Madani</div>
+          </a>
+          <a href="#" class="block bg-white border border-yellow-200 rounded-lg px-3 py-2 shadow-sm hover:bg-yellow-50 transition">
+            <div class="font-semibold text-sm text-gray-800">Kajian Subuh Istiqal: Keutamaan Membaca Alquran di Bulan Ramadhan</div>
+          </a>
+          <a href="#" class="block bg-white border border-yellow-200 rounded-lg px-3 py-2 shadow-sm hover:bg-yellow-50 transition">
+            <div class="font-semibold text-sm text-gray-800">Hikmah: Ramadhan dan Muhasabah yang Menyapa Umat Islam</div>
+          </a>
+        </div>
       </aside>
       <!-- Artikel Utama dan List -->
       <section class="md:col-span-3 col-span-1">
@@ -101,35 +110,35 @@
           <!-- Artikel Samping (Ringkasan) -->
           <div class="space-y-4">
             <div class="bg-white rounded-lg shadow p-2 flex gap-2">
-              <img src="{{ asset('aset/artikel5.jpg') }}" class="w-16 h-12 object-cover rounded" alt="Fatwa Syaikh Shalih">
+              <img src="{{ asset('aset/fatwa.png') }}" class="w-16 h-12 object-cover rounded" alt="Fatwa Syaikh Shalih">
               <div>
                 <div class="font-semibold text-xs">Fatwa Syaikh Shalih Al Fauzan Seputar Kerjasama Dengan Negara Kafir</div>
                 <div class="text-[11px] text-gray-500">6 April 2015</div>
               </div>
             </div>
             <div class="bg-white rounded-lg shadow p-2 flex gap-2">
-              <img src="{{ asset('aset/artikel6.jpg') }}" class="w-16 h-12 object-cover rounded" alt="Tiada Nabi Lagi Sesudah Beliau">
+              <img src="{{ asset('aset/TiadaNabi.png') }}" class="w-16 h-12 object-cover rounded" alt="Tiada Nabi Lagi Sesudah Beliau">
               <div>
                 <div class="font-semibold text-xs">Tiada Nabi Lagi Sesudah Beliau</div>
                 <div class="text-[11px] text-gray-500">21 Februari 2014</div>
               </div>
             </div>
             <div class="bg-white rounded-lg shadow p-2 flex gap-2">
-              <img src="{{ asset('aset/artikel7.jpg') }}" class="w-16 h-12 object-cover rounded" alt="Atasi Corona dengan Bertauhid">
+              <img src="{{ asset('aset/bertauhid.png') }}" class="w-16 h-12 object-cover rounded" alt="Atasi Corona dengan Bertauhid">
               <div>
                 <div class="font-semibold text-xs">Atasi Corona dengan Bertauhid yang Sempurna (Bag. 4)</div>
                 <div class="text-[11px] text-gray-500">6 April 2020</div>
               </div>
             </div>
             <div class="bg-white rounded-lg shadow p-2 flex gap-2">
-              <img src="{{ asset('aset/artikel8.jpg') }}" class="w-16 h-12 object-cover rounded" alt="Kedudukan Ulama">
+              <img src="{{ asset('aset/kedudukan.png') }}" class="w-16 h-12 object-cover rounded" alt="Kedudukan Ulama">
               <div>
                 <div class="font-semibold text-xs">Kedudukan Ulama Di Tengah Umat</div>
                 <div class="text-[11px] text-gray-500">12 Januari 2016</div>
               </div>
             </div>
             <div class="bg-white rounded-lg shadow p-2 flex gap-2">
-              <img src="{{ asset('aset/artikel9.jpg') }}" class="w-16 h-12 object-cover rounded" alt="Serial 24 Alam Jin">
+              <img src="{{ asset('aset/jin.png') }}" class="w-16 h-12 object-cover rounded" alt="Serial 24 Alam Jin">
               <div>
                 <div class="font-semibold text-xs">Serial 24 Alam Jin: Jin yang Beriman pada Al Quran</div>
                 <div class="text-[11px] text-gray-500">17 September 2014</div>
@@ -223,5 +232,19 @@ if (toggleMapFullscreenBtn && mapFrame) {
     }
   });
 }
+</script>
+<script>
+function pad(n){return n<10?'0'+n:n;}
+function updateCurrentTimeHome() {
+    const now = new Date();
+    const jam = pad(now.getHours());
+    const mnt = pad(now.getMinutes());
+    const dtk = pad(now.getSeconds());
+    const str = `${jam}:${mnt}:${dtk} (WIB)`;
+    const el = document.getElementById('currentTimeHome');
+    if(el) el.textContent = str;
+}
+setInterval(updateCurrentTimeHome, 1000);
+updateCurrentTimeHome();
 </script>
 </html>

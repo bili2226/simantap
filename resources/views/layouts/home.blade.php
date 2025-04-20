@@ -14,18 +14,21 @@
     <!-- Header & Navbar -->
     <header class="bg-white shadow-sm">
       <div class="max-w-6xl mx-auto flex items-center justify-between py-2 px-4">
+        <!-- Current Time on Home -->
+
         <div class="flex items-center gap-3">
           <a href="/home" class="flex items-center gap-3">
             <img src="{{ asset('aset/logoMasjid.svg') }}" alt="Logo" class="w-16 h-16 object-contain">
             <span class="text-xl font-bold text-gray-700">Masjid Jami Tangkubanperahu</span>
           </a>
         </div>
-        <nav class="flex gap-2 md:gap-4">
+        <nav class="flex gap-2 md:gap-4 items-center">
           <a href="/home" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Home</a>
           <a href="#" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Agenda</a>
           <a href="/artikel" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Artikel</a>
           <a href="/berita" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Berita</a>
           <a href="/informasi" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Informasi</a>
+          <span id="currentTimeHome" class="font-mono text-xs text-gray-700 bg-white px-3 py-1 rounded-full ml-1"></span>
         </nav>
       </div>
     </header>
@@ -258,6 +261,20 @@ if (toggleMapFullscreenBtn && mapFrame) {
     }
   });
 }
+
+// function untuk update time
+function pad(n){return n<10?'0'+n:n;}
+function updateCurrentTimeHome() {
+    const now = new Date();
+    const jam = pad(now.getHours());
+    const mnt = pad(now.getMinutes());
+    const dtk = pad(now.getSeconds());
+    const str = `${jam}:${mnt}:${dtk} (WIB)`;
+    const el = document.getElementById('currentTimeHome');
+    if(el) el.textContent = str;
+}
+setInterval(updateCurrentTimeHome, 1000);
+updateCurrentTimeHome();
 </script>
 </body>
 </html>

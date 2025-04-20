@@ -24,6 +24,8 @@
           <a href="/artikel" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Artikel</a>
           <a href="/berita" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Berita</a>
           <a href="/informasi" class="bg-[#d2cc8c] rounded-full px-3 py-1 text-xs md:text-sm font-semibold shadow hover:bg-[#c6be7b] transition">Informasi</a>
+          <span id="currentTimeHome" class="font-mono text-xs text-gray-700 bg-white px-3 py-1 rounded-full ml-1"></span>
+
         </nav>
       </div>
     </header>
@@ -209,5 +211,19 @@ if (toggleMapFullscreenBtn && mapFrame) {
     }
   });
 }
+
+// jam di navbar
+function pad(n){return n<10?'0'+n:n;}
+function updateCurrentTimeHome() {
+    const now = new Date();
+    const jam = pad(now.getHours());
+    const mnt = pad(now.getMinutes());
+    const dtk = pad(now.getSeconds());
+    const str = `${jam}:${mnt}:${dtk} (WIB)`;
+    const el = document.getElementById('currentTimeHome');
+    if(el) el.textContent = str;
+}
+setInterval(updateCurrentTimeHome, 1000);
+updateCurrentTimeHome();
 </script>
 </html>

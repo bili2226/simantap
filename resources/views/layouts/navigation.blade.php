@@ -19,7 +19,11 @@
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center sm:ms-6 gap-6">
+                <!-- Current Time -->
+                <div id="currentTimeNavbar" class="font-mono text-sm text-gray-700 dark:text-gray-200 flex items-center">
+                    <span id="currentTimeText">Waktu</span>
+                </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
@@ -98,3 +102,27 @@
         </div>
     </div>
 </nav>
+<script>
+function pad(n){return n<10?'0'+n:n;}
+function hariIndo(n) {
+    return ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'][n];
+}
+function bulanIndo(n) {
+    return ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'][n];
+}
+function updateCurrentTime() {
+    const now = new Date();
+    const hari = hariIndo(now.getDay());
+    const tgl = pad(now.getDate());
+    const bln = bulanIndo(now.getMonth());
+    const thn = now.getFullYear();
+    const jam = pad(now.getHours());
+    const mnt = pad(now.getMinutes());
+    const dtk = pad(now.getSeconds());
+    const str = `${hari}, ${tgl} ${bln} ${thn} ${jam}:${mnt}:${dtk} (WIB)`;
+    const el = document.getElementById('currentTimeText');
+    if(el) el.textContent = str;
+}
+setInterval(updateCurrentTime, 1000);
+updateCurrentTime();
+</script>
