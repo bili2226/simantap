@@ -8,6 +8,10 @@ Route::get('/home', function () {
     return view('layouts.home');
 })->name('home');
 
+Route::get('/agenda', function () {
+    return view('layouts.agenda');
+})->name('agenda');
+
 Route::get('/', function () {
     return view('layouts.home');
 });
