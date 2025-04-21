@@ -17,10 +17,34 @@
         </div>
         <div class="mb-4">
             <label class="block font-semibold mb-1">Gambar (opsional)</label>
-            <input type="file" name="gambar" accept="image/*" class="w-full border rounded px-3 py-2">
-            @if(isset($artikel) && $artikel->gambar)
-                <img src="{{ asset('storage/'.$artikel->gambar) }}" alt="Gambar Artikel" class="mt-2 w-32 rounded">
-            @endif
+            <input type="file" name="gambar" accept="image/*" class="w-full border rounded px-3 py-2" id="gambarInput">
+            <div id="previewContainer">
+                @if(isset($artikel) && $artikel->gambar)
+                    <img id="previewGambar" src="{{ asset('storage/'.$artikel->gambar) }}" alt="Gambar Artikel" class="mt-2 w-32 rounded">
+                @else
+                    <img id="previewGambar" src="#" alt="Preview Gambar" class="mt-2 w-32 rounded hidden">
+                @endif
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const input = document.getElementById('gambarInput');
+                    const preview = document.getElementById('previewGambar');
+                    input.addEventListener('change', function(e) {
+                        const file = e.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function(ev) {
+                                preview.src = ev.target.result;
+                                preview.classList.remove('hidden');
+                            }
+                            reader.readAsDataURL(file);
+                        } else {
+                            preview.src = '#';
+                            preview.classList.add('hidden');
+                        }
+                    });
+                });
+            </script>
         </div>
         <div class="flex gap-2">
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">{{ isset($artikel) ? 'Update' : 'Tambah' }}</button>

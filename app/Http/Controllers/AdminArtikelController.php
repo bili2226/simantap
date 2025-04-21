@@ -47,6 +47,10 @@ class AdminArtikelController extends Controller
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
         if ($request->hasFile('gambar')) {
+            // Hapus gambar lama jika ada
+            if ($artikel->gambar && \Storage::disk('public')->exists($artikel->gambar)) {
+                \Storage::disk('public')->delete($artikel->gambar);
+            }
             $validated['gambar'] = $request->file('gambar')->store('artikel', 'public');
         }
         $artikel->update($validated);

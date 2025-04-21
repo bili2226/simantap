@@ -31,24 +31,6 @@
     </div>
   </header>
 
-  <!-- Main Artikel Section -->
-  <main class="max-w-4xl mx-auto py-8 px-4">
-    <h1 class="text-2xl font-bold text-green-700 mb-6 text-center">Artikel Masjid</h1>
-    <div class="grid gap-8">
-      @forelse($artikels as $artikel)
-        <div class="bg-white rounded-xl shadow p-6 flex flex-col gap-3">
-          <h2 class="text-xl font-bold text-[#4b4b2e] mb-2">{{ $artikel->judul }}</h2>
-          <div class="text-xs text-gray-500 mb-2">{{ $artikel->created_at->format('d M Y') }}</div>
-          @if($artikel->gambar)
-            <img src="{{ asset('storage/'.$artikel->gambar) }}" alt="Gambar Artikel" class="w-full max-h-64 object-cover rounded mb-3">
-          @endif
-          <div class="text-gray-800 text-base">{!! nl2br(e($artikel->isi)) !!}</div>
-        </div>
-      @empty
-        <div class="text-center text-gray-500 py-8">Belum ada artikel.</div>
-      @endforelse
-    </div>
-  </main>
   <main class="max-w-6xl mx-auto py-8 px-4">
     <h1 class="text-2xl font-bold text-center mb-6">Artikel Islam</h1>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -107,8 +89,8 @@
               </div>
             </div>
           </div>
-          <!-- Artikel Samping (Ringkasan) -->
-          <div class="space-y-4">
+        <!-- Artikel Samping (Ringkasan) -->
+        <div class=" md:grid-cols-4 gap-4 md:col-span-1 col-span-1">
             <div class="bg-white rounded-lg shadow p-2 flex gap-2">
               <img src="{{ asset('aset/fatwa.png') }}" class="w-16 h-12 object-cover rounded" alt="Fatwa Syaikh Shalih">
               <div>
