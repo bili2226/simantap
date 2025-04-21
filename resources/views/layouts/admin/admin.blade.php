@@ -19,7 +19,7 @@
           <a href="/admin/galeri" class="text-white font-semibold hover:underline">Galeri</a>
           <a href="/admin/konsultasi" class="text-white font-semibold hover:underline">Konsultasi</a>
           <a href="/admin/reservasi" class="text-white font-semibold hover:underline">Reservasi</a>
-          <a href="/home" class="text-red-400 font-semibold hover:underline">Logout</a>
+          <a href="/" class="text-red-400 font-semibold hover:underline">Logout</a>
         </nav>
       </div>
     </header>

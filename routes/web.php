@@ -128,21 +128,13 @@ use App\Http\Controllers\InformasiController;
 Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi');
 
 use App\Http\Controllers\ReservasiController;
-Route::get('/reservasi', [ReservasiController::class, 'create'])->name('reservasi');
-Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservasi.store');
-
 use App\Http\Controllers\ZakatController;
-Route::get('/zakat', [ZakatController::class, 'index'])->name('zakat');
-
-// Route untuk halaman admin panel
-Route::view('/admin', 'layouts.admin.admin')->name('admin');
-
 use App\Http\Controllers\AdminArtikelController;
 use App\Http\Controllers\AdminBeritaController;
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('artikel', AdminArtikelController::class);
-    Route::resource('berita', AdminBeritaController::class);
-});
+
+Route::get('/reservasi', [ReservasiController::class, 'create'])->name('reservasi');
+Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservasi.store');
+Route::get('/zakat', [ZakatController::class, 'index'])->name('zakat');
 
 use App\Models\Berita;
 Route::get('/berita', function () {
