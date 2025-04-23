@@ -155,4 +155,12 @@ Route::get('/konsultasi', [KonsultasiController::class, 'index'])->name('konsult
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 Route::post('/konsultasi', [KonsultasiController::class, 'store'])->name('konsultasi.store');
 
+// route untuk page admin
+Route::view('/admin', 'layouts.admin.admin')->name('admin');
+
+Route::prefix('admin')->name('admin.')->group(function(){
+    Route::resource('artikel', AdminArtikelController::class);
+    Route::resource('berita', AdminBeritaController::class);
+});
+
 require __DIR__.'/auth.php';
